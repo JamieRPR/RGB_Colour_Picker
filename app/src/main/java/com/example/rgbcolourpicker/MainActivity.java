@@ -13,6 +13,7 @@ import com.google.android.material.slider.Slider;
 public class MainActivity extends AppCompatActivity {
 
     ConstraintLayout container;
+    TextView HEX_value_text_view;
     TextView RGB_value_text_view;
 
     Slider R_value_slider;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         container = findViewById(R.id.container);
+        HEX_value_text_view = findViewById(R.id.HEX_value_text_view);
         RGB_value_text_view = findViewById(R.id.RGB_value_text_view);
 
         R_value_slider = findViewById(R.id.R_value_slider);
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         container.setBackgroundColor(RGB);
 
+        HEX_value_text_view.setText(String.format( "#%02x%02x%02x", R, G, B ));
         RGB_value_text_view.setText(new StringBuilder().append("rgb(").append(R).append(",").append(G).append(",").append(B).append(")").toString());
         R_value_text_view.setText(String.valueOf(R));
         G_value_text_view.setText(String.valueOf(G));
