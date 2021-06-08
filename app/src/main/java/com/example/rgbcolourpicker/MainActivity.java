@@ -1,5 +1,8 @@
 package com.example.rgbcolourpicker;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -83,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v instanceof TextView) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("Color Value", ((TextView) v).getText());
+                    clipboard.setPrimaryClip(clip);
                     displayToast(((TextView) v).getText() + " has been copied to your clipboard.");
                 }
             }
@@ -99,6 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayToast(String message) {
-        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 }
